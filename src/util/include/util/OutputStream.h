@@ -12,7 +12,7 @@
 #pragma once
 
 #include <string>  // for string
-
+#include <fstream>
 #include <zlib.h>  // for gzFile
 
 #include "filesystem.h"  // for path
@@ -44,7 +44,9 @@ public:
 
 private:
     gzFile fp = nullptr;
-
+    void removePreviewLine(const std::string& filePath);
+    void removeFirstLine(const fs::path& filePath);
+    std::ofstream ofp;
     std::string error;
     fs::path file;
 };

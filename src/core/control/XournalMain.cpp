@@ -373,7 +373,7 @@ struct XournalMainPrivate {
     gboolean exportNoRuling = false;
     gboolean progressiveMode = false;
     gboolean disableAudio = false;
-    gboolean attachMode = false;
+    gboolean attachMode = true;
     std::unique_ptr<GladeSearchpath> gladePath;
     std::unique_ptr<Control> control;
     std::unique_ptr<MainWindow> win;
@@ -630,7 +630,7 @@ void on_shutdown(GApplication*, XMPtr app_data) {
 auto XournalMain::run(int argc, char** argv) -> int {
 
     XournalMainPrivate app_data;
-    GtkApplication* app = gtk_application_new("com.github.xournalpp.xournalpp", APP_FLAGS);
+    GtkApplication* app = gtk_application_new("com.rokonik.xournalpp", APP_FLAGS);
     g_object_set(G_OBJECT(app), "register-session", true, nullptr);  // Needed for opening files on MacOS from Finder
     g_set_prgname("com.github.xournalpp.xournalpp");
     g_signal_connect(app, "activate", G_CALLBACK(&on_activate), &app_data);
